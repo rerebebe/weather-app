@@ -2,7 +2,7 @@ import "./App.css";
 import List from "./components/List";
 import Edit from "./components/Edit";
 import CurrentSearch from "./components/CurrentSearch";
-import { useWeather, WeatherProvider } from "./helpers/WeatherContext";
+import { useWeather } from "./helpers/WeatherContext";
 
 function App() {
   const { data } = useWeather();
@@ -22,15 +22,11 @@ function App() {
   }
 
   return (
-    <>
-      <WeatherProvider>
-        <div className={getbkgd(data)}>
-          <Edit />
-          <CurrentSearch />
-          <List />
-        </div>
-      </WeatherProvider>
-    </>
+    <div className={getbkgd(data)}>
+      <Edit />
+      <CurrentSearch />
+      <List />
+    </div>
   );
 }
 
