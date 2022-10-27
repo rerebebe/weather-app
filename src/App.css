@@ -34,7 +34,7 @@ h4 {
 }
 .app {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   background-color: rgba(0, 0, 0, 0.4);
   color: white;
@@ -53,8 +53,8 @@ h4 {
 }
 .weatherlocation {
   max-width: 700px;
-  height: 600px;
-  margin: auto;
+  /* height: 600px; */
+  margin: 40px;
   padding: 0 1rem;
   position: relative;
   top: 10%;
@@ -81,3 +81,60 @@ h4 {
   justify-content: space-evenly;
   flex-direction: column;
 }
+
+.top {
+  display: flex;
+  justify-content: center;
+}
+
+.top .searchbar {
+  margin: 15px;
+}
+.top .searchbar input {
+  font-size: 20px;
+  border-radius: 25px;
+  height: 40px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.184);
+  padding: 10px;
+  margin: 10px;
+}
+.top .searchbar input:focus {
+  outline: 2px solid pink;
+}
+.top .searchbar button {
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 6px;
+  border: 2px solid rgba(255, 255, 255, 0.856);
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.833);
+}
+.top .searchbar button:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.552);
+  color: black;
+  border: 2px solid rgba(255, 255, 255, 0.552);
+}
+::placeholder {
+  color: rgb(184, 194, 194);
+  background-color: transparent;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #fff !important;
+}
+
+.history {
+  background-color: rgba(255, 255, 255, 0.229);
+  margin: 20px;
+  border-radius: 20px;
+  padding: 20px;
+}
+/* .history > p {
+  font-size: ;
+} */

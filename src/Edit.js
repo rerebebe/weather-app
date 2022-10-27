@@ -83,36 +83,35 @@ function Edit({ addHistory }) {
   }, [history]);
 
   return (
-    <div>
-      <div className="top">
-        {/* {JSON.stringify(history)} */}
-
-        {warnMessage}
-        <div className="searchbar">
-          <label htmlFor="City">City:</label>
-          <input
-            className="input"
-            value={city}
-            onChange={(e) => {
-              setCity(e.target.value);
-            }}
-            type="text"
-            name="city"
-          />
-          <label htmlFor="Country">Country:</label>
-          <input
-            className="input"
-            value={country}
-            onChange={(e) => {
-              setCountry(e.target.value);
-            }}
-            type="text"
-            name="country"
-          />
-          <button onClick={searchLocation} disabled={!city || !country}>
-            Search
-          </button>
-        </div>
+    <div className="top">
+      {/* {JSON.stringify(history)} */}
+      {warnMessage}
+      <div className="searchbar">
+        <label htmlFor="City"></label>
+        <input
+          className="input"
+          value={city}
+          onChange={(e) => {
+            setCity(e.target.value);
+          }}
+          type="text"
+          name="city"
+          placeholder="Enter City..."
+        />
+        <label htmlFor="Country"></label>
+        <input
+          className="input"
+          value={country}
+          onChange={(e) => {
+            setCountry(e.target.value);
+          }}
+          type="text"
+          name="country"
+          placeholder="Enter Country..."
+        />
+        <button onClick={searchLocation} disabled={!city || !country}>
+          Search
+        </button>
       </div>
     </div>
   );
