@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useWeather } from "./helpers/WeatherContext";
 
 function App() {
-  const { setHistory } = useWeather();
+  const { setHistory, data } = useWeather();
   function addHistory(data) {
     setHistory(function (prevData) {
       if (data) {
@@ -28,8 +28,23 @@ function App() {
     const time = d.toLocaleTimeString();
     return time;
   }
+
+  function getbkgd(data) {
+    if (data.weather) {
+      if (data.weather[0].description === "clear sky") {
+        return "app2";
+      } else if (data.weather[0].description === "scattered clouds") {
+        return "app3";
+      } else {
+        return "app";
+      }
+    } else {
+      return "app4";
+    }
+  }
+
   return (
-    <div className="app">
+    <div className={getbkgd(data)}>
       <Edit addHistory={addHistory} />
       <CurrentSearch getTime={getTime} />
       <List addHistory={addHistory} />
