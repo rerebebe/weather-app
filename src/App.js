@@ -9,7 +9,10 @@ function App() {
 
   function getbkgd(data) {
     if (data.weather) {
-      if (data.weather[0].description === "clear sky") {
+      if (
+        data.weather[0].description === "clear sky" ||
+        data.weather[0].description === "few clouds"
+      ) {
         return "app2";
       } else if (
         data.weather[0].description === "scattered clouds" ||
