@@ -11,7 +11,10 @@ function App() {
     if (data.weather) {
       if (data.weather[0].description === "clear sky") {
         return "app2";
-      } else if (data.weather[0].description === "scattered clouds") {
+      } else if (
+        data.weather[0].description === "scattered clouds" ||
+        data.weather[0].description === "broken clouds"
+      ) {
         return "app3";
       } else {
         return "app";
