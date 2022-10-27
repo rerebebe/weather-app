@@ -35,6 +35,7 @@ h4 {
 .app2,
 .app3,
 .app4 {
+  padding: 1%;
   width: 100%;
   min-height: 100vh;
   position: relative;
@@ -44,7 +45,7 @@ h4 {
 .app:before {
   content: "";
   background: url("./assets/veryCloudy.jpeg");
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: cover;
   position: absolute;
   width: 100%;
@@ -233,4 +234,7 @@ input:-webkit-autofill:active {
     font-size: 15px;
     font-weight: 600;
   }
+}
+.listbottom {
+  margin: 2px;
 }
