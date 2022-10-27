@@ -21,9 +21,8 @@ span {
   border: 1px grey solid;
   border-radius: 5px;
   padding: 2px 3px;
-  background-color: rgba(255, 255, 255, 0.184);
+  background-color: rgba(255, 255, 255, 0.356);
   color: white;
-
   margin: 5px;
 }
 h1 {
@@ -122,8 +121,18 @@ h4 {
 }
 
 .top {
-  display: flex;
+  display: grid;
   justify-content: center;
+}
+.warnmsg {
+  letter-spacing: -1px;
+  font-size: large;
+  background-color: rgba(251, 206, 214, 0.743);
+  padding: 4px 6px;
+  color: black;
+  border: 1px solid rgb(255, 0, 43);
+  max-width: 4000px;
+  margin: 30px 20px;
 }
 
 .top .searchbar {

@@ -1,7 +1,8 @@
-import { useWeather } from "./helpers/WeatherContext";
+import { useWeather } from "../helpers/WeatherContext";
 
-function CurrentSearch({ getTime }) {
-  const { data } = useWeather();
+function CurrentSearch() {
+  const { data, getTime } = useWeather();
+
   return (
     <div className="weatherlocation">
       <div className="location">

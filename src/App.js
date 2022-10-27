@@ -1,33 +1,11 @@
 import "./App.css";
-import List from "./List";
-import Edit from "./Edit";
-import CurrentSearch from "./CurrentSearch";
-import { v4 as uuidv4 } from "uuid";
-import { useWeather } from "./helpers/WeatherContext";
+import List from "./components/List";
+import Edit from "./components/Edit";
+import CurrentSearch from "./components/CurrentSearch";
+import { useWeather, WeatherProvider } from "./helpers/WeatherContext";
 
 function App() {
-  const { setHistory, data } = useWeather();
-  function addHistory(data) {
-    setHistory(function (prevData) {
-      if (data) {
-        return [
-          ...prevData,
-          {
-            id: uuidv4(),
-            city: data.name,
-            country: data.sys.country,
-            time: getTime(),
-          },
-        ];
-      }
-    });
-  }
-
-  function getTime() {
-    const d = new Date();
-    const time = d.toLocaleTimeString();
-    return time;
-  }
+  const { data } = useWeather();
 
   function getbkgd(data) {
     if (data.weather) {
@@ -44,11 +22,15 @@ function App() {
   }
 
   return (
-    <div className={getbkgd(data)}>
-      <Edit addHistory={addHistory} />
-      <CurrentSearch getTime={getTime} />
-      <List addHistory={addHistory} />
-    </div>
+    <>
+      <WeatherProvider>
+        <div className={getbkgd(data)}>
+          <Edit />
+          <CurrentSearch />
+          <List />
+        </div>
+      </WeatherProvider>
+    </>
   );
 }
 

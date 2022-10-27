@@ -1,9 +1,9 @@
-import { useWeather } from "./helpers/WeatherContext";
-import { API_GET_DATA, url } from "./helpers/constants";
+import { useWeather } from "../helpers/WeatherContext";
+import { API_GET_DATA, url } from "../helpers/constants";
 
 import { useEffect } from "react";
 
-function Edit({ addHistory }) {
+function Edit() {
   const {
     data,
     setData,
@@ -11,15 +11,15 @@ function Edit({ addHistory }) {
     setCity,
     country,
     setCountry,
-    warnMessage,
     setWarnMessage,
     history,
     setHistory,
+    addHistory,
   } = useWeather();
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=55141f435bde34cfbbe5b1de710e39e0`;
-
   const searchLocation = async () => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=55141f435bde34cfbbe5b1de710e39e0`;
+
     try {
       if (city && country) {
         const response = await fetch(url);
@@ -30,7 +30,7 @@ function Edit({ addHistory }) {
           setCity("");
           setCountry("");
         } else {
-          addHistory(data);
+          addHistory(setHistory, data);
           setCity("");
           setCountry("");
           setWarnMessage("");
@@ -41,10 +41,6 @@ function Edit({ addHistory }) {
     } catch {
       setWarnMessage(data.message);
     }
-    // fetch(url)
-    //   .then((res) => res.json())
-    //   .then((data) => setData(data));
-    // console.log(data);
   };
 
   // adding into history state
@@ -85,7 +81,6 @@ function Edit({ addHistory }) {
   return (
     <div className="top">
       {/* {JSON.stringify(history)} */}
-      {warnMessage}
       <div className="searchbar">
         <label htmlFor="City"></label>
         <input

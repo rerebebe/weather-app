@@ -1,10 +1,32 @@
 import { useState, createContext, useContext } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 //const WeatherContext = createContext(null);
 export const WeatherContext = createContext(null);
 
 export function useWeather() {
   return useContext(WeatherContext);
+}
+export function getTime() {
+  const d = new Date();
+  const time = d.toLocaleTimeString();
+  return time;
+}
+
+export function addHistory(setHistory, data) {
+  setHistory(function (prevData) {
+    if (data) {
+      return [
+        ...prevData,
+        {
+          id: uuidv4(),
+          city: data.name,
+          country: data.sys.country,
+          time: getTime(),
+        },
+      ];
+    }
+  });
 }
 
 export function WeatherProvider({ children }) {
@@ -27,6 +49,8 @@ export function WeatherProvider({ children }) {
         setWarnMessage,
         history,
         setHistory,
+        getTime,
+        addHistory,
       }}
     >
       {children}

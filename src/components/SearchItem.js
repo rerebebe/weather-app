@@ -1,18 +1,9 @@
-import { useWeather } from "./helpers/WeatherContext";
+import { useWeather } from "../helpers/WeatherContext";
 import { BiSearchAlt } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 const SearchItem = ({ index, id, city, country, time }) => {
-  const {
-    data,
-    setData,
-    setCity,
-    setCountry,
-    warnMessage,
-    setWarnMessage,
-    history,
-    setHistory,
-  } = useWeather();
+  const { setData, setCity, setCountry, setHistory } = useWeather();
 
   const deleteItem = (id) => {
     setHistory(function (prev) {
