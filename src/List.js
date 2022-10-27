@@ -7,8 +7,8 @@ const List = ({ addHistory }) => {
 
   return (
     <div className="history">
-      <p>......search history.....</p>
-      <div>
+      <p>Search History</p>
+      <div className="historyContent">
         {history.map((item, index) => {
           const { id, city, country, time } = item;
           return (

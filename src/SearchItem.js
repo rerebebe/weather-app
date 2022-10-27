@@ -1,4 +1,6 @@
 import { useWeather } from "./helpers/WeatherContext";
+import { BiSearchAlt } from "react-icons/bi";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const SearchItem = ({ index, id, city, country, time }) => {
   const {
@@ -33,26 +35,25 @@ const SearchItem = ({ index, id, city, country, time }) => {
   };
 
   return (
-    <div>
-      <div>
-        <div>
-          <p>{index + 1}</p>
-          <p>{`${city}, ${country}`}</p>
-        </div>
+    <div className="singlehistory">
+      <div className="numnlocation">
+        <p>
+          {index + 1}. {`${city}, ${country}`}
+        </p>
+      </div>
 
-        <div>
-          <p>{time}</p>
-          <button type="button" onClick={setAPI}>
-            Search
-          </button>
-          <button
-            onClick={() => {
-              deleteItem(id);
-            }}
-          >
-            Delete
-          </button>
-        </div>
+      <div className="timenbtn">
+        <p>{time}</p>
+        <button type="button" onClick={setAPI}>
+          <BiSearchAlt size="1.3rem" margin="auto" />
+        </button>
+        <button
+          onClick={() => {
+            deleteItem(id);
+          }}
+        >
+          <RiDeleteBin6Line size="1.3rem" margin="auto" />
+        </button>
       </div>
     </div>
   );
