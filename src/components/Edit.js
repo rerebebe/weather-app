@@ -1,7 +1,7 @@
-import { useWeather } from "../helpers/WeatherContext";
-import { API_GET_DATA, url } from "../helpers/constants";
+import { useWeather } from '../helpers/WeatherContext';
+import { API_GET_DATA } from '../helpers/constants';
 
-import { useEffect } from "react";
+import { useEffect, useCallback } from 'react';
 
 function Edit() {
   const {
@@ -17,6 +17,32 @@ function Edit() {
     addHistory,
   } = useWeather();
 
+  // adding into history state
+
+  const fetchHistory = useCallback(async () => {
+    try {
+      const response = await fetch(API_GET_DATA);
+      const { history } = await response.json();
+      await setHistory(history);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [setHistory]);
+
+  // const pushHistory = async () => {
+  //   try {
+  //     await fetch(API_GET_DATA, {
+  //       method: 'PUT',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ history }),
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   const searchLocation = async () => {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=55141f435bde34cfbbe5b1de710e39e0`;
 
@@ -27,56 +53,30 @@ function Edit() {
         setData(data);
         if (data.message) {
           setWarnMessage(data.message);
-          setCity("");
-          setCountry("");
+          setCity('');
+          setCountry('');
         } else {
           addHistory(setHistory, data);
-          setCity("");
-          setCountry("");
-          setWarnMessage("");
+          setCity('');
+          setCountry('');
+          setWarnMessage('');
         }
       } else {
-        setWarnMessage("Please enter the location!");
+        setWarnMessage('Please enter the location!');
       }
     } catch {
       setWarnMessage(data.message);
     }
   };
 
-  // adding into history state
-
-  const fetchHistory = async () => {
-    try {
-      const response = await fetch(API_GET_DATA);
-      const { history } = await response.json();
-      setHistory(history);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const pushHistory = async () => {
-    try {
-      await fetch(API_GET_DATA, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ history }),
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     fetchHistory();
-  }, []);
+  }, [fetchHistory]);
   console.log(history);
 
-  useEffect(() => {
-    pushHistory();
-  }, [history]);
+  // useEffect(() => {
+  //   pushHistory();
+  // }, [history]);
 
   return (
     <div className="top">

@@ -1,5 +1,5 @@
-import { useState, createContext, useContext } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { useState, createContext, useContext } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 //const WeatherContext = createContext(null);
 export const WeatherContext = createContext(null);
@@ -15,7 +15,11 @@ export function getTime() {
 
 export function addHistory(setHistory, data) {
   setHistory(function (prevData) {
-    if (data) {
+    const isDuplicate = prevData.some(
+      (item) => item.city.toLowerCase() === data.name.toLowerCase(),
+    );
+
+    if (data && !isDuplicate) {
       return [
         ...prevData,
         {
@@ -25,15 +29,20 @@ export function addHistory(setHistory, data) {
           time: getTime(),
         },
       ];
+    } else {
+      return prevData.map((item) => ({
+        ...item,
+        time: getTime(),
+      }));
     }
   });
 }
 
 export function WeatherProvider({ children }) {
   const [data, setData] = useState({});
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [warnMessage, setWarnMessage] = useState("");
+  const [city, setCity] = useState('');
+  const [country, setCountry] = useState('');
+  const [warnMessage, setWarnMessage] = useState('');
   const [history, setHistory] = useState([]);
 
   return (
